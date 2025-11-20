@@ -16,12 +16,30 @@
     .muted{color:#6b7280;font-size:0.9rem}
     .error{color:#b91c1c;margin-top:10px}
   </style>
-  <!-- Load PayPal SDK and call initPayPal once loaded -->
-  <script
-    src="https://www.paypal.com/sdk/js?client-id=BAAuFyKVTOm4cbxeFZhpHlLSjJmOMerx9tQ1ua3QdYGonrrvXE379al7IUWFlHQSWcvvP4H6is31-Vqzl0&currency=USD"
-    onload="initPayPal()"
-    onerror="console.error('PayPal SDK failed to load')"
-  ></script>
+  <script>
+    function showError(msg) {
+      const el = document.getElementById('paypal-error');
+      if (el) { el.style.display = 'block'; el.textContent = msg; }
+    }
+
+    // Initialize Hosted Button after SDK loads
+    function initPayPal() {
+      try {
+        if (!window.paypal) {
+          showError('PayPal SDK not available.');
+          return;
+        }
+
+        // Your original Hosted Button code
+        paypal.HostedButtons({
+          hostedButtonId: "3UFE9CKXSJRQA",
+        }).render("#paypal-container-3UFE9CKXSJRQA");
+      } catch(e) {
+        console.error(e);
+        showError('Error initializing PayPal Hosted Button.');
+      }
+    }
+  </script>
 </head>
 <body>
   <main class="container">
@@ -30,75 +48,14 @@
       <p class="note">Secure checkout via PayPal</p>
 
       <div class="pay-box">
-        <!-- Container where PayPal Buttons will render -->
         <div id="paypal-container-3UFE9CKXSJRQA"></div>
         <div id="paypal-error" class="error" aria-live="polite" style="display:none"></div>
-        <p class="muted">Default deposit amount: <strong id="deposit-amount">$10.00</strong></p>
+        <p class="muted">Deposit amount is set via PayPal Hosted Button</p>
       </div>
     </div>
   </main>
 
-  <script>
-    // Default deposit amount (change as needed)
-    const DEPOSIT_AMOUNT = '10.00';
-
-    // initPayPal is called when the SDK script finishes loading (via onload attribute)
-    function initPayPal() {
-      try {
-        if (!window.paypal) {
-          showError('PayPal SDK not available.');
-          return;
-        }
-
-        // Render PayPal Buttons. Using paypal.Buttons instead of HostedButtons.
-        paypal.Buttons({
-          style: {
-            layout: 'vertical',
-            color:  'blue',
-            shape:  'rect',
-            label:  'pay'
-          },
-
-          // createOrder creates the transaction with the deposit amount
-          createOrder: function(data, actions) {
-            return actions.order.create({
-              purchase_units: [{
-                amount: { value: DEPOSIT_AMOUNT }
-              }]
-            });
-          },
-
-          // onApprove captures the funds and shows a simple message
-          onApprove: function(data, actions) {
-            return actions.order.capture().then(function(details) {
-              alert('Transaction completed by ' + (details.payer.name && details.payer.name.given_name ? details.payer.name.given_name : 'the payer') + '.');
-            });
-          },
-
-          onError: function(err) {
-            console.error('PayPal Buttons error', err);
-            showError('An error occurred while initializing the payment. See console for details.');
-          }
-        }).render('#paypal-container-3UFE9CKXSJRQA')
-        .catch(function(err){
-          console.error('Render error', err);
-          showError('Could not render PayPal button.');
-        });
-
-        // update deposit amount UI
-        const amt = document.getElementById('deposit-amount');
-        if (amt) amt.textContent = '$' + DEPOSIT_AMOUNT;
-
-      } catch (e) {
-        console.error(e);
-        showError('Unexpected error during PayPal setup.');
-      }
-    }
-
-    function showError(msg) {
-      const el = document.getElementById('paypal-error');
-      if (el) { el.style.display = 'block'; el.textContent = msg; }
-    }
-  </script>
+  <!-- Load PayPal SDK, then call initPayPal -->
+  <script src="https://www.paypal.com/sdk/js?client-id=BAAuFyKVTOm4cbxeFZhpHlLSjJmOMerx9tQ1ua3QdYGonrrvXE379al7IUWFlHQSWcvvP4H6is31-Vqzl0&components=hosted-buttons&enable-funding=venmo&currency=USD" onload="initPayPal()" onerror="console.error('PayPal SDK failed to load')"></script>
 </body>
 </html>
