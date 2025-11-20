@@ -4,58 +4,39 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Pay here for deposit</title>
+
+  <!-- PayPal SDK (paste only once) -->
+  <script src="https://www.paypal.com/sdk/js?client-id=BAAuFyKVTOm4cbxeFZhpHlLSjJmOMerx9tQ1ua3QdYGonrrvXE379al7IUWFlHQSWcvvP4H6is31-Vqzl0&components=hosted-buttons&enable-funding=venmo&currency=USD"></script>
+
   <style>
     :root { --bg: #f7f7f8; --card: #ffffff; --text: #111827; --cash-green: #00c244; }
-    html,body{height:100%;margin:0;font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; background:var(--bg); color:var(--text);}
-    body{display:flex;align-items:center;justify-content:center;}
-    .container{width:100%;max-width:500px;padding:30px;text-align:center}
-    h1{margin:0;font-size:2rem;font-weight:600}
-    .note{margin-top:8px;color:#6b7280;font-size:0.95rem}
-    .card{background:var(--card);padding:30px;border-radius:20px;box-shadow:0 8px 20px rgba(0,0,0,0.07);}
-    .pay-box{margin-top:20px;padding:20px;border-radius:16px;background:#fafafa;display:flex;flex-direction:column;gap:15px;align-items:center;justify-content:center;}
-    .pay-box *{width:100%; text-align:center;}
-    .muted{color:#6b7280;font-size:0.9rem;margin:0;}
-    .error{color:#b91c1c;margin-top:10px;font-size:0.9rem;}
-    .cash-btn{background:var(--cash-green);color:black;font-weight:bold;padding:6px 14px;border:none;border-radius:12px;font-size:0.85rem;cursor:pointer;text-decoration:none;display:inline-block;width:100%;max-width:200px;height:40px;line-height:40px;margin:20px auto 0 auto;transition:transform 0.2s ease;}
+    html,body{height:100%;margin:0;font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; background:var(--bg); color:var(--text); display:flex; flex-direction:column; align-items:center; justify-content:center;}
+    .container{width:100%;max-width:500px;padding:30px;text-align:center;}
+    h1{margin:0;font-size:2rem;font-weight:600;}
+    .note{margin-top:8px;color:#6b7280;font-size:0.95rem;}
+    .card{background:var(--card);padding:30px;border-radius:20px;box-shadow:0 8px 20px rgba(0,0,0,0.07); width:100%; max-width:500px;}
+    .cash-btn{background:var(--cash-green);color:black;font-weight:bold;padding:10px 20px;border:none;border-radius:12px;font-size:1rem;cursor:pointer;text-decoration:none;display:inline-block;width:100%;max-width:200px;height:50px;line-height:50px;margin:20px auto 0 auto;transition:transform 0.2s ease;}
     .cash-btn:hover{transform:scale(1.05);}
   </style>
-  <script>
-    function showError(msg) {
-      const el = document.getElementById('paypal-error');
-      if (el) { el.style.display = 'block'; el.textContent = msg; }
-    }
-
-    function initPayPal() {
-      try {
-        if (!window.paypal) { showError('PayPal SDK not available.'); return; }
-        paypal.HostedButtons({ hostedButtonId: "3UFE9CKXSJRQA" }).render("#paypal-container-3UFE9CKXSJRQA");
-      } catch(e) { console.error(e); showError('Error initializing PayPal Hosted Button.'); }
-    }
-  </script>
-
-  <!-- Adsense code START -->
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9205932761015826" crossorigin="anonymous"></script>
-  <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9205932761015826" data-ad-slot="7890946386" data-ad-format="auto" data-full-width-responsive="true"></ins>
-  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-  <!-- Adsense code END -->
 </head>
 <body>
   <main class="container">
     <div class="card">
       <h1>Pay Here for Deposit</h1>
-      <p class="note">Secure checkout via PayPal or Cash App</p>
+      <p class="note">Pay securely via PayPal or Cash App</p>
 
-      <div class="pay-box">
-        <div id="paypal-container-3UFE9CKXSJRQA"></div>
-        <div id="paypal-error" class="error" aria-live="polite"></div>
-        <p class="muted">Deposit amount is set via PayPal Hosted Button</p>
-      </div>
-
-      <a href="https://cash.app/$AshtonzMoore6" class="cash-btn" target="_blank">Cash App</a>
+      <!-- PayPal Hosted Button -->
+      <div id="paypal-container-3UFE9CKXSJRQA"></div>
+      <script>
+        paypal.HostedButtons({
+          hostedButtonId: "3UFE9CKXSJRQA",
+        }).render("#paypal-container-3UFE9CKXSJRQA");
+      </script>
 
     </div>
-  </main>
 
-  <script src="https://www.paypal.com/sdk/js?client-id=BAAuFyKVTOm4cbxeFZhpHlLSjJmOMerx9tQ1ua3QdYGonrrvXE379al7IUWFlHQSWcvvP4H6is31-Vqzl0&components=hosted-buttons&enable-funding=venmo&currency=USD" onload="initPayPal()" onerror="console.error('PayPal SDK failed to load')"></script>
+    <!-- Cash App button outside the card -->
+    <a href="https://cash.app/$AshtonzMoore6" class="cash-btn" target="_blank">Cash App</a>
+  </main>
 </body>
 </html>
