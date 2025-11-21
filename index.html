@@ -1,20 +1,8 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9205932761015826"
-     crossorigin="anonymous"></script>
-<!-- Pay -->
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-9205932761015826"
-     data-ad-slot="9735095223"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
   <title>Pay here for deposit</title>
 
   <!-- PayPal SDK (paste only once) -->
@@ -22,13 +10,28 @@
 
   <style>
     :root { --bg: #f7f7f8; --card: #ffffff; --text: #111827; --cash-green: #00c244; }
-    html,body{height:100%;margin:0;font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; background:var(--bg); color:var(--text); display:flex; flex-direction:column; align-items:center; justify-content:center;}
-    .container{width:100%;max-width:500px;padding:30px;text-align:center;}
+    html,body{margin:0;font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; background:var(--bg); color:var(--text); overflow-x:hidden;}
+
+    /* Container and card sizing */
+    .container{width:100%; max-width:100%; padding:20px;text-align:center;box-sizing:border-box; display:flex; flex-direction:column; align-items:center;}
     h1{margin:0;font-size:2rem;font-weight:600;}
     .note{margin-top:8px;color:#6b7280;font-size:0.95rem;}
-    .card{background:var(--card);padding:30px;border-radius:20px;box-shadow:0 8px 20px rgba(0,0,0,0.07); width:100%; max-width:500px;}
-    .cash-btn{background:var(--cash-green);color:black;font-weight:bold;padding:10px 20px;border:none;border-radius:12px;font-size:1rem;cursor:pointer;text-decoration:none;display:inline-block;width:100%;max-width:200px;height:50px;line-height:50px;margin:20px 0 0 50px;transition:transform 0.2s ease; text-align:center;}
-    .cash-btn:hover{transform:scale(1.05);}
+    .card{background:var(--card);padding:20px;border-radius:18px;box-shadow:0 8px 20px rgba(0,0,0,0.07); width:100%; max-width:500px; box-sizing:border-box; margin-bottom:20px;}
+
+    /* Cash App button (outside the white box) */
+    .cash-btn{background:var(--cash-green);color:black;font-weight:bold;padding:10px 20px;border:none;border-radius:12px;font-size:1rem;cursor:pointer;text-decoration:none;display:inline-block;width:220px;height:48px;line-height:44px;margin:18px auto 0 auto;transition:transform 0.2s ease;text-align:center;}
+    .cash-btn:hover{transform:scale(1.03);}
+
+    /* Ad container spacing */
+    .ad-wrap{width:100%; max-width:500px; margin:18px auto 0 auto;}
+
+    /* Responsive tweaks for small screens */
+    @media (max-width:480px){
+      .container{width:100%; padding:12px;}
+      .card{width:100%; padding:16px;border-radius:14px; margin-bottom:16px;}
+      .cash-btn{width:200px;height:44px;line-height:44px}
+      .ad-wrap{padding:0 8px}
+    }
   </style>
 </head>
 <body>
@@ -37,7 +40,7 @@
       <h1>Pay Here for Deposit</h1>
       <p class="note">Pay securely via PayPal or Cash App</p>
 
-      <!-- PayPal Hosted Button -->
+      <!-- PayPal Hosted Button (kept exactly as before) -->
       <div id="paypal-container-3UFE9CKXSJRQA"></div>
       <script>
         paypal.HostedButtons({
@@ -47,8 +50,21 @@
 
     </div>
 
-    <!-- Cash App button outside the card, moved slightly right -->
+    <!-- Cash App button (outside the white card) -->
     <a href="https://cash.app/$AshtonzMoore6" class="cash-btn" target="_blank">Cash App</a>
+
+    <!-- AdSense: placed BELOW the Cash App button, outside the white box -->
+    <div class="ad-wrap">
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9205932761015826" crossorigin="anonymous"></script>
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-9205932761015826"
+           data-ad-slot="9735095223"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+
   </main>
 </body>
 </html>
