@@ -1,3 +1,4 @@
+web
 <!doctype html>
 <html lang="en">
 <head>
@@ -28,7 +29,33 @@
       .cash-btn{width:200px;height:44px;line-height:44px}
       .ad-wrap{padding:0 8px}
     }
+    <!-- Google Pay Button -->
+<div id="gpay-btn" style="margin-top:15px;"></div>
+
+<script>
+  const gpay = paypal.Googlepay();
+
+  gpay.BUTTONS({
+    createOrder: function (data, actions) {
+      // read the same input amount
+      let amount = prompt("Enter amount to pay (USD):");
+
+      return actions.order.create({
+        purchase_units: [{
+          amount: { value: amount }
+        }]
+      });
+    },
+
+    onApprove: function (data, actions) {
+      return actions.order.capture().then(function (details) {
+        alert("Google Pay payment completed!");
+      });
+    }
+  }).render('#gpay-btn');
+</script>
   </style>
+  
 </head>
 <body>
   <main class="container">
