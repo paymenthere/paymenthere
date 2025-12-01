@@ -1,3 +1,4 @@
+hi
 <!doctype html>
 <html lang="en">
 <head>
@@ -28,33 +29,7 @@
       .cash-btn{width:200px;height:44px;line-height:44px}
       .ad-wrap{padding:0 8px}
     }
-    <!-- Google Pay Button -->
-<div id="gpay-btn" style="margin-top:15px;"></div>
-
-<script>
-  const gpay = paypal.Googlepay();
-
-  gpay.BUTTONS({
-    createOrder: function (data, actions) {
-      // read the same input amount
-      let amount = prompt("Enter amount to pay (USD):");
-
-      return actions.order.create({
-        purchase_units: [{
-          amount: { value: amount }
-        }]
-      });
-    },
-
-    onApprove: function (data, actions) {
-      return actions.order.capture().then(function (details) {
-        alert("Google Pay payment completed!");
-      });
-    }
-  }).render('#gpay-btn');
-</script>
   </style>
-  
 </head>
 <body>
   <main class="container">
@@ -72,18 +47,13 @@
     </div>
 
     <a href="https://cash.app/$AshtonzMoore6" class="cash-btn" target="_blank">Cash App</a>
+<script src="https://www.paypal.com/sdk/js?client-id=ASecN5Dk_uE8xQK1bRwTHHU_1r9OnGNY4zsSyTxqdglT-NXdtHU8SxLOoFRTtLBH0_L25NzCcbMD2x_U&currency=USD&components=buttons,googlepay"></script>
 
-    <!-- AdSense below Cash App -->
-    <div class="ad-wrap">
-      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9205932761015826" crossorigin="anonymous"></script>
-      <ins class="adsbygoogle"
-           style="display:block"
-           data-ad-client="ca-pub-9205932761015826"
-           data-ad-slot="9735095223"
-           data-ad-format="auto"
-           data-full-width-responsive="true"></ins>
-      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-    </div>
+<div id="google-pay-container"></div>
+<script>
+paypal.Googlepay().BUTTONS().render('#google-pay-container');
+</script>
+   
 
   </main>
 </body>
