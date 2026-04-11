@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="en">
 <head>
@@ -7,7 +6,9 @@
   <title>Pay here for deposit</title>
 
   <!-- PayPal SDK (Hosted Buttons with Venmo enabled) -->
-  <script src="https://www.paypal.com/sdk/js?client-id=BAAuFyKVTOm4cbxeFZhpHlLSjJmOMerx9tQ1ua3QdYGonrrvXE379al7IUWFlHQSWcvvP4H6is31-Vqzl0&components=hosted-buttons&enable-funding=venmo&currency=USD"></script>
+  <script 
+  src="https://www.paypal.com/sdk/js?client-id=BAAQzFJbFubPBCxB6MDca3ggvaFxgbEzt6F1IAECrb-R9jTZ120GAhFW2Ug30RVoE_wHGeBObW1-sWXtIo&components=hosted-buttons&enable-funding=venmo&currency=USD">
+</script>
 
   <style>
     :root { --bg: #f7f7f8; --card: #ffffff; --text: #111827; --cash-green: #00c244; }
@@ -38,22 +39,26 @@
       <p class="note">Pay securely via PayPal or Cash App</p>
 
       <!-- PayPal Hosted Button (as before, Venmo enabled via SDK) -->
-      <div id="paypal-container-3UFE9CKXSJRQA"></div>
-      <script>
-        paypal.HostedButtons({
-          hostedButtonId: "3UFE9CKXSJRQA",
-        }).render("#paypal-container-3UFE9CKXSJRQA");
-      </script>
-    </div>
+      <div id="paypal-container-5ZTA7N2GMRPAC"></div>
+<script>
+  paypal.HostedButtons({
+    hostedButtonId: "5ZTA7N2GMRPAC",
+  }).render("#paypal-container-5ZTA7N2GMRPAC")
+</script>
 
     <a href="https://cash.app/$AshtonzMoore6" class="cash-btn" target="_blank">Cash App</a>
-<script src="https://www.paypal.com/sdk/js?client-id=ASecN5Dk_uE8xQK1bRwTHHU_1r9OnGNY4zsSyTxqdglT-NXdtHU8SxLOoFRTtLBH0_L25NzCcbMD2x_U&currency=USD&components=buttons,googlepay"></script>
 
-<div id="google-pay-container"></div>
-<script>
-paypal.Googlepay().BUTTONS().render('#google-pay-container');
-</script>
-   
+    <!-- AdSense below Cash App -->
+    <div class="ad-wrap">
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9205932761015826" crossorigin="anonymous"></script>
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-9205932761015826"
+           data-ad-slot="9735095223"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
 
   </main>
 </body>
